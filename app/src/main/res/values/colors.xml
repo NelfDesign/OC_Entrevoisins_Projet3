@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#03A9F4</color>
+    <color name="colorPrimaryDark">#0287c3</color>
+    <color name="colorAccent">#FF80AB</color>
+
+    <!-- Data for activity_profile_neighbour.xml -->
+    <color name="backgroundActivity">#e7e1fb</color>
+    <color name="separatorCardView">#FAFAFA</color>
+    <color name="backgroundFAB">#F5F5F5</color>
+    <color name="mainTitle">#4B4B4B</color>
+    <color name="fab_favorite_is_true">#FFC107</color>
+    <color name="fab_favorite_is_false">#000000</color>
+</resources>

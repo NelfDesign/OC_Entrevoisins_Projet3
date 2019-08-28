@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.neighbour_list.Details_Neighbour"
+    android:id="@+id/activity_details">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundActivity">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- USER IMAGE -->
+
+                <ImageView
+                    android:id="@+id/imageNeighbour"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:src="@drawable/ic_launcher_background"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <!-- TOOLBAR -->
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbarDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <TextView
+                    android:id="@+id/nameDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:paddingBottom="20dp"
+                    tools:text="Caroline"
+                    android:textSize="36sp"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/activity_profile_neighbour_cv_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="1dp"
+            app:layout_constraintTop_toBottomOf="@id/appbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- USERNAME -->
+
+                <TextView
+                    android:id="@+id/nameCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    tools:text="Caroline"
+                    android:textSize="28sp"
+                    android:textColor="@color/mainTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- SEPARATOR -->
+
+                <View
+                    android:id="@+id/separator"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/backgroundActivity"
+                    android:paddingStart="@dimen/activity_horizontal_margin"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/nameCard" />
+
+                <!-- ICON ADDRESS -->
+
+                <ImageView
+                    android:id="@+id/iconAddress"
+                    style="@style/iconDetail"
+                    android:src="@drawable/ic_room_white_24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/separator" />
+
+                <!-- ADDRESS -->
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/address"
+                    android:textSize="16sp"
+                    android:textAlignment="textStart"
+                    app:layout_constraintBottom_toBottomOf="@id/iconAddress"
+                    app:layout_constraintStart_toEndOf="@id/iconAddress"
+                    app:layout_constraintTop_toTopOf="@id/iconAddress" />
+
+                <!-- ICON PHONE -->
+
+                <ImageView
+                    android:id="@+id/iconPhone"
+                    style="@style/iconDetail"
+                    android:src="@drawable/ic_call_white_24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iconAddress" />
+
+                <!-- PHONE -->
+
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phone_number"
+                    android:textSize="16sp"
+                    android:textAlignment="textStart"
+                    app:layout_constraintBottom_toBottomOf="@id/iconPhone"
+                    app:layout_constraintStart_toEndOf="@id/iconPhone"
+                    app:layout_constraintTop_toTopOf="@id/iconPhone" />
+
+                <!-- ICON URL -->
+
+                <ImageView
+                    android:id="@+id/iconUrl"
+                    style="@style/iconDetail"
+                    android:src="@drawable/ic_language_white_24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iconPhone"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <!-- URL -->
+
+                <TextView
+                    android:id="@+id/facebook"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/url"
+                    android:textAlignment="textStart"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/iconUrl"
+                    app:layout_constraintStart_toEndOf="@id/iconUrl"
+                    app:layout_constraintTop_toTopOf="@+id/iconUrl" />
+
+                <TextView
+                    android:id="@+id/nameFacebook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/facebook"
+                    tools:text="caroline" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/activity_profile_neighbour_cv_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="1dp"
+            app:layout_constraintTop_toBottomOf="@id/activity_profile_neighbour_cv_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/activity_profile_neighbour_tv_basic_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="8dp"
+                    android:text="@string/text"
+                    android:textSize="26sp"
+                    android:textColor="@color/mainTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <View
+                    android:id="@+id/activity_profile_neighbour_v_separator2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separatorCardView"
+                    android:paddingStart="@dimen/activity_horizontal_margin"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/activity_profile_neighbour_tv_basic_text"/>
+
+                <!-- INTRODUCTION -->
+
+                <TextView
+                    android:id="@+id/activity_profile_neighbour_tv_introduction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="@string/description"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/activity_profile_neighbour_v_separator2"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:clickable="true"
+        android:src="@drawable/ic_star_border_white_24dp"
+        android:tint="@android:color/black"
+        app:backgroundTint="@color/backgroundActivity"/>
+
+</android.support.design.widget.CoordinatorLayout>

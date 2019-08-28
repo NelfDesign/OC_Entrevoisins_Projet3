@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Entrevoisins</string>
+    <string name="tab_neighbour_title">My neighbours</string>
+    <string name="tab_favorites_title">Favorites</string>
+
+    <string name="address">Saint pierre du mont à 5km</string>
+    <string name="phone_number">+33 6 86 57 90 14</string>
+    <string name="url">www.facebook.fr/</string>
+    <string name="text">A propos de moi</string>
+    <string name="description">"Bonjour! Je souhaiterais faire de la marche nordique. Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner! J'aime les jeux de cartes tels la belote et le tarot."</string>
+</resources>
