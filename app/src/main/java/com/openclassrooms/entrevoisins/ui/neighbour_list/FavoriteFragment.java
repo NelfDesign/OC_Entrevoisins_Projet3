@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import com.google.gson.Gson;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
-import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
+import com.openclassrooms.entrevoisins.events.DeleteFavoriteEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
@@ -24,21 +24,24 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
-
-public class NeighbourFragment extends Fragment implements MyNeighbourRecyclerViewAdapter.onItemListener{
+/**
+ * Created by Nelfdesign at 30/08/2019
+ * com.openclassrooms.entrevoisins.ui.neighbour_list
+ */
+public class FavoriteFragment extends Fragment implements MyNeighbourRecyclerViewAdapter.onItemListener{
 
     private NeighbourApiService mApiService;
-    private List<Neighbour> mNeighbours;
+    private List<Neighbour> favoritesList;
     private RecyclerView mRecyclerView;
 
+    public FavoriteFragment() { }
 
     /**
      * Create and return a new instance
-     * @return @{@link NeighbourFragment}
+     * @return @{@link FavoriteFragment}
      */
-    public static NeighbourFragment newInstance() {
-        NeighbourFragment fragment = new NeighbourFragment();
-        return fragment;
+    public static FavoriteFragment newInstance() {
+        return new FavoriteFragment();
     }
 
     @Override
@@ -50,7 +53,7 @@ public class NeighbourFragment extends Fragment implements MyNeighbourRecyclerVi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_neighbour_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_favorite_list, container, false);
         Context context = view.getContext();
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -60,11 +63,11 @@ public class NeighbourFragment extends Fragment implements MyNeighbourRecyclerVi
     }
 
     /**
-     * Init the List of neighbours
+     * Init the List of favorite neighbours
      */
     private void initList() {
-        mNeighbours = mApiService.getNeighbours();
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours, this));
+        favoritesList = mApiService.getFavorites();
+        mRecyclerView.setAdapter(new FavoriteRecyclerViewAdapter(favoritesList, this));
     }
 
     @Override
@@ -84,8 +87,8 @@ public class NeighbourFragment extends Fragment implements MyNeighbourRecyclerVi
      * @param event
      */
     @Subscribe
-    public void onDeleteNeighbour(DeleteNeighbourEvent event) {
-        mApiService.deleteNeighbour(event.neighbour);
+    public void onDeleteFavorite(DeleteFavoriteEvent event) {
+        mApiService.deleteFavorite(event.neighbour);
         initList();
     }
 
@@ -97,8 +100,7 @@ public class NeighbourFragment extends Fragment implements MyNeighbourRecyclerVi
     public void onItemClick(int position) {
         Log.i("click", "Click ok");
         Gson gson = new Gson();
-        String json = gson.toJson(mNeighbours.get(position));
-
+        String json = gson.toJson(favoritesList.get(position));
         Context context = getContext();
         Intent intent = new Intent(context, DetailsNeighbourActivity.class);
         intent.putExtra("json", json);

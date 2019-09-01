@@ -23,6 +23,11 @@ import butterknife.ButterKnife;
 
 public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeighbourRecyclerViewAdapter.ViewHolder> {
 
+    //interface to get the click on the item
+    public interface onItemListener{
+        void onItemClick(int position);
+    }
+
     private final List<Neighbour> mNeighbours;
     private onItemListener mOnItemListener;
 
@@ -92,8 +97,4 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         }
     }
 
-    //interface to get the click on the item
-    public interface onItemListener{
-        void onItemClick(int position);
-    }
 }

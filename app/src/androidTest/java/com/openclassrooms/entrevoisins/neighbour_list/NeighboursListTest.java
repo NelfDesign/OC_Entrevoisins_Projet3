@@ -1,17 +1,15 @@
 
 package com.openclassrooms.entrevoisins.neighbour_list;
 
-import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.openclassrooms.entrevoisins.R;
-import com.openclassrooms.entrevoisins.ui.neighbour_list.Details_Neighbour;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
 import com.openclassrooms.entrevoisins.utils.DeleteViewAction;
-import com.openclassrooms.entrevoisins.utils.SelectViewAction;
+import com.openclassrooms.entrevoisins.utils.DetailsNeighbourAction;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -19,17 +17,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.actionWithAssertions;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
 import static org.hamcrest.core.IsNull.notNullValue;
-
-
 
 /**
  * Test class for list of neighbours
@@ -76,8 +72,30 @@ public class NeighboursListTest {
         onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT-1));
     }
 
+    /**
+     * Click on a item then go to details Page
+     */
     @Test
-    public void myNeighboursList_clickOnView_shouldGoTODetailPage(){
+    public void myNeighboursList_clickOnView_shouldGoToDetailPage(){
+        //Given : click on the item
+        onView(withId(R.id.list_neighbours))
+                .perform(click());
+        //Then : go to page details
+        onView(withId(R.id.activity_details))
+                .check(matches(isDisplayed()));
+    }
 
+    /**
+     * Click on a item and attent to have the name in the TextView
+     */
+    @Test
+    public void detailPageTextView_LoadNameTextView_shouldShowTheName(){
+        //Given : creation instance of DetailsNeighbourAction created in utils
+        DetailsNeighbourAction detailsNeighbourAction = new DetailsNeighbourAction();
+        //When : click on a item of neighbour list
+        onView(withId(R.id.list_neighbours))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(1, detailsNeighbourAction));
+        //Then : attent to have the name of the neighbour in the TextView
+        onView(withId(R.id.nameDetails)).check(matches(withText(detailsNeighbourAction.getName())));
     }
 }

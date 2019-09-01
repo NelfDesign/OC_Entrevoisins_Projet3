@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.neighbour_list.Details_Neighbour"
+    tools:context=".ui.neighbour_list.DetailsNeighbourActivity"
     android:id="@+id/activity_details">
 
     <android.support.constraint.ConstraintLayout
@@ -268,8 +268,8 @@
         app:layout_anchorGravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:clickable="true"
-        android:src="@drawable/ic_star_border_white_24dp"
-        android:tint="@android:color/black"
-        app:backgroundTint="@color/backgroundActivity"/>
+        android:src="@drawable/ic_star_border_yellow_24dp"
+        app:backgroundTint="@color/backgroundActivity"
+        android:focusable="true" />
 
 </android.support.design.widget.CoordinatorLayout>
