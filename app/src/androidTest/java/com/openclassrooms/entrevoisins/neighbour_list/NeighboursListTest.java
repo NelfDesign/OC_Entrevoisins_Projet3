@@ -7,14 +7,18 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.model.Neighbour;
+import com.openclassrooms.entrevoisins.service.DummyNeighbourGenerator;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
 import com.openclassrooms.entrevoisins.utils.DeleteViewAction;
-import com.openclassrooms.entrevoisins.utils.DetailsNeighbourAction;
+import com.openclassrooms.entrevoisins.utils.SelectViewAction;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.List;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -35,8 +39,10 @@ public class NeighboursListTest {
 
     // This is fixed
     private static int ITEMS_COUNT = 12;
+    private static int POSITION_ITEM = 0;
 
     private ListNeighbourActivity mActivity;
+    private List<Neighbour> mNeighbourList = DummyNeighbourGenerator.DUMMY_NEIGHBOURS;
 
     @Rule
     public ActivityTestRule<ListNeighbourActivity> mActivityRule =
@@ -90,12 +96,12 @@ public class NeighboursListTest {
      */
     @Test
     public void detailPageTextView_LoadNameTextView_shouldShowTheName(){
-        //Given : creation instance of DetailsNeighbourAction created in utils
-        DetailsNeighbourAction detailsNeighbourAction = new DetailsNeighbourAction();
-        //When : click on a item of neighbour list
+        //Given : create a neighbour for test at the position 0
+        Neighbour neighbour = this.mNeighbourList.get(POSITION_ITEM);
+        //When : click on a item of neighbour list at position 0
         onView(withId(R.id.list_neighbours))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(1, detailsNeighbourAction));
+                .perform(RecyclerViewActions.actionOnItemAtPosition(POSITION_ITEM, new SelectViewAction()));
         //Then : attent to have the name of the neighbour in the TextView
-        onView(withId(R.id.nameDetails)).check(matches(withText(detailsNeighbourAction.getName())));
+        onView(withId(R.id.nameDetails)).check(matches(withText(neighbour.getName())));
     }
 }
