@@ -21,14 +21,18 @@ import org.junit.runner.RunWith;
 import java.util.List;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.contrib.ViewPagerActions.scrollRight;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 
 /**
@@ -103,5 +107,56 @@ public class NeighboursListTest {
                 .perform(RecyclerViewActions.actionOnItemAtPosition(POSITION_ITEM, new SelectViewAction()));
         //Then : attent to have the name of the neighbour in the TextView
         onView(withId(R.id.nameDetails)).check(matches(withText(neighbour.getName())));
+    }
+
+    /**
+     * Chek if the list of favorite given only favorite neighbours
+     */
+    @Test
+    public void Given_two_favorites_When_clickOnFavoriteButton_Then_AttentToShowThem(){
+        //When : Check if the View is Displayed
+        onView(withId(R.id.list_neighbours)).check(matches(isDisplayed()));
+        for (int i = 0; i < 2; i++){
+            //click on the first neighbour to show detail
+            onView(withId(R.id.list_neighbours))
+                    .perform(RecyclerViewActions.actionOnItemAtPosition(i,new SelectViewAction()));
+            //click on the fab button to add it to favorite
+            onView(withId(R.id.fab)).perform(click());
+            //return back
+            pressBack();
+        }
+        //scroll to the favorite page in the container
+        onView(withId(R.id.container)).perform(scrollRight());
+        //Check if favorite list has 2 items
+        onView(withId(R.id.list_favorite)).check(withItemCount(2));
+        //Then : assert that the page is displayed
+        onView(withId(R.id.list_favorite)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void Given_2Favorites_When_clickOnDelete_Then_deleteOne() {
+        //When : Check if the View is Displayed
+        onView(withId(R.id.list_neighbours)).check(matches(isDisplayed()));
+        for (int i = 0; i < 1; i++){
+            //click on the first neighbour to show detail
+            onView(withId(R.id.list_neighbours))
+                    .perform(RecyclerViewActions.actionOnItemAtPosition(i,new SelectViewAction()));
+            //click on the fab button to add it to favorite
+            onView(withId(R.id.fab)).perform(click());
+            //return back
+            pressBack();
+        }
+
+        //scroll to the favorite page in the container
+        onView(withId(R.id.container)).perform(scrollRight());
+        //Then : assert that the page is displayed
+        onView(withId(R.id.list_favorite)).check(matches(isDisplayed()));
+        //check if the count is 1
+        onView(withId(R.id.list_favorite)).check(withItemCount(1));
+        // When perform a click on a delete icon
+        onView(withId(R.id.list_favorite))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, new DeleteViewAction()));
+        // Then : the number of element is 0
+        onView(withId(R.id.list_favorite)).check(withItemCount(0));
     }
 }

@@ -16,6 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Unit test on Neighbour service
@@ -44,26 +45,37 @@ public class NeighbourServiceTest {
         assertFalse(service.getNeighbours().contains(neighbourToDelete));
     }
 
+    /**
+     * assert that the list is not null
+     */
     @Test
     public void getFavoriteWithSuccess(){
         assertNotNull(service.getFavorites());
     }
 
+    /**
+     * Assert that the add method is correct
+     */
     @Test
     public void addFavoriteWithSuccess(){
         Neighbour neighbour = new Neighbour(1, "Caroline", "http://i.pravatar.cc/150?u=a042581f4e29026704d");
-        List<Neighbour> favorite = new ArrayList<>();
+        List<Neighbour> favorite = service.getFavorites();
         favorite.add(neighbour);
         assertEquals(1, favorite.size());
     }
 
+    /**
+     * assert that the neighbour is well remove from the list
+     */
     @Test
     public void deleteFavoriteWithSuccess(){
         Neighbour neighbour = new Neighbour(1, "Caroline", "http://i.pravatar.cc/150?u=a042581f4e29026704d");
         Neighbour neighbour2 = new Neighbour(2, "Jack", "http://i.pravatar.cc/150?u=a042581f4e29026704e");
-        List<Neighbour> favorite = new ArrayList<>();
+        List<Neighbour> favorite = service.getFavorites();
         favorite.add(neighbour);
+        favorite.add(neighbour2);
         service.deleteFavorite(neighbour);
         assertFalse(service.getFavorites().contains(neighbour));
+        assertTrue(service.getFavorites().contains(neighbour2));
     }
 }

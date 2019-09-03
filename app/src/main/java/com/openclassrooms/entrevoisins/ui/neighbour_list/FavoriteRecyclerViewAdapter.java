@@ -48,7 +48,7 @@ public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRe
 
        for (Neighbour favorite : favoriteNeighbours){
             favorite = favoriteNeighbours.get(position);
-            if (!favorite.isFavorite()){
+            if (favorite.isFavorite()){
                 holder.favoriteName.setText(favorite.getName());
                 Glide.with(holder.favoriteAvatar.getContext())
                         .load(favorite.getAvatarUrl())
