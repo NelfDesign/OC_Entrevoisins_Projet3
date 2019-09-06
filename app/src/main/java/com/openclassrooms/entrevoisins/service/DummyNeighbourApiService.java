@@ -30,7 +30,7 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     }
 
     /**
-     *
+     * check if a neighbour is favorite in the neighbours list
      * @return list of favorite neighbours
      */
     @Override
@@ -45,19 +45,17 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     }
 
     /**
-     * Add a neighbour to favorite list
+     * addFavorite update the boolean to true for the selected neighbour
      * @param neighbour
      */
     @Override
     public void addFavorite(Neighbour neighbour) {
         neighbours.get(neighbours.indexOf(neighbour)).setFavorite(true);
-        //neighbour.setFavorite(true);
-        //favoritesList.add(neighbour);
     }
 
 
     /**
-     * Delete a neighbour to the list
+     * deleteFavorite update the boolean to false for the selected neighbour
      * @param neighbour
      */
     @Override

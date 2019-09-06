@@ -82,6 +82,7 @@ public class FavoriteFragment extends Fragment implements MyNeighbourRecyclerVie
         EventBus.getDefault().unregister(this);
     }
 
+    //method called by the back button
     @Override
     public void onResume() {
         super.onResume();
