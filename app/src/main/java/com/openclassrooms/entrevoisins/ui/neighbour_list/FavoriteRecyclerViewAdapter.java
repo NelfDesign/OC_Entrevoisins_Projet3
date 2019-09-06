@@ -27,9 +27,11 @@ import butterknife.ButterKnife;
  */
 public class FavoriteRecyclerViewAdapter extends RecyclerView.Adapter<FavoriteRecyclerViewAdapter.ViewHolder> {
 
+    //Fields
     private List<Neighbour> favoriteNeighbours;
     private MyNeighbourRecyclerViewAdapter.onItemListener mOnItemListener;
 
+    //constructor
     public FavoriteRecyclerViewAdapter(List<Neighbour> favoriteNeighbours,
                                        MyNeighbourRecyclerViewAdapter.onItemListener onItemListener) {
         this.favoriteNeighbours = favoriteNeighbours;

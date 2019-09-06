@@ -82,6 +82,12 @@ public class FavoriteFragment extends Fragment implements MyNeighbourRecyclerVie
         EventBus.getDefault().unregister(this);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initList();
+    }
+
     /**
      * Fired if the user clicks on a delete button
      * @param event

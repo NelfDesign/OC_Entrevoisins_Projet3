@@ -16,8 +16,9 @@ public class Neighbour {
     /** Avatar */
     private String avatarUrl;
 
-    /** */
+    /** Favorite */
     private boolean isFavorite;
+
     /**
      * Constructor
      * @param id

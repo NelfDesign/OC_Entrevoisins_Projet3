@@ -133,8 +133,11 @@ public class NeighboursListTest {
         onView(withId(R.id.list_favorite)).check(matches(isDisplayed()));
     }
 
+    /**
+     * assert that the delete button remove a favorite in the list
+     */
     @Test
-    public void Given_2Favorites_When_clickOnDelete_Then_deleteOne() {
+    public void Given_aFavorite_When_clickOnDelete_Then_deleteIt() {
         //When : Check if the View is Displayed
         onView(withId(R.id.list_neighbours)).check(matches(isDisplayed()));
         for (int i = 0; i < 1; i++){
@@ -151,7 +154,7 @@ public class NeighboursListTest {
         onView(withId(R.id.container)).perform(scrollRight());
         //Then : assert that the page is displayed
         onView(withId(R.id.list_favorite)).check(matches(isDisplayed()));
-        //check if the count is 1
+        //check if the favorite count is 1
         onView(withId(R.id.list_favorite)).check(withItemCount(1));
         // When perform a click on a delete icon
         onView(withId(R.id.list_favorite))

@@ -40,7 +40,7 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
 
     private Neighbour mNeighbour;
     private NeighbourApiService mNeighbourApiService;
-    private Intent intent;
+    private Intent mIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,7 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         mNeighbourApiService = DI.getNeighbourApiService();
 
+        //Add toolbar and return arrow
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         if (toolbar != null){
@@ -56,12 +57,14 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        intent = getIntent();
+        //get data from json to neighbour
+        mIntent = getIntent();
         Gson gson = new Gson();
-        mNeighbour = gson.fromJson(intent.getStringExtra("json"), Neighbour.class);
-
+        mNeighbour = gson.fromJson(mIntent.getStringExtra("json"), Neighbour.class);
+        //update UI
         updateUi();
 
+        //Listen click on FAB button
         fab.setOnClickListener(view -> {
             if (!mNeighbourApiService.getFavorites().contains(mNeighbour)) {
                 mNeighbourApiService.addFavorite(mNeighbour);
