@@ -58,14 +58,14 @@ public class FavoriteFragment extends Fragment implements MyNeighbourRecyclerVie
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        initList();
+        initListFavorite();
         return view;
     }
 
     /**
      * Init the List of favorite neighbours
      */
-    private void initList() {
+    private void initListFavorite() {
         favoritesList = mApiService.getFavorites();
         mRecyclerView.setAdapter(new FavoriteRecyclerViewAdapter(favoritesList, this));
     }
@@ -86,7 +86,7 @@ public class FavoriteFragment extends Fragment implements MyNeighbourRecyclerVie
     @Override
     public void onResume() {
         super.onResume();
-        initList();
+        initListFavorite();
     }
 
     /**
@@ -96,7 +96,7 @@ public class FavoriteFragment extends Fragment implements MyNeighbourRecyclerVie
     @Subscribe
     public void onDeleteFavorite(DeleteFavoriteEvent event) {
         mApiService.deleteFavorite(event.neighbour);
-        initList();
+        initListFavorite();
     }
 
     /**

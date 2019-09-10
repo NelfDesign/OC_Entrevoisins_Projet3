@@ -38,10 +38,12 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
     @BindView(R.id.activity_details)
     CoordinatorLayout mCoordinatorLayout;
 
+    //Fields
     private Neighbour mNeighbour;
     private NeighbourApiService mNeighbourApiService;
     private Intent mIntent;
 
+    // method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +66,7 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
         //update UI
         updateUi();
 
-        //Listen click on FAB button
+        //Listen click on FAB button to add neighbour to favorite or not
         fab.setOnClickListener(view -> {
             if (!mNeighbourApiService.getFavorites().contains(mNeighbour)) {
                 mNeighbourApiService.addFavorite(mNeighbour);
@@ -77,6 +79,9 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * set the UI fiels with the neighbour data
+     */
     private void updateUi() {
         nameText.setText(mNeighbour.getName());
         nameFacebook.setText(mNeighbour.getName().toLowerCase());
@@ -87,6 +92,7 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
 
         nameCard.setText(mNeighbour.getName());
 
+        //check if the neighbour is favorite
         if (mNeighbourApiService.getFavorites().contains(mNeighbour)){
             fab.setImageResource(R.drawable.ic_star_yellow_24dp);
         }

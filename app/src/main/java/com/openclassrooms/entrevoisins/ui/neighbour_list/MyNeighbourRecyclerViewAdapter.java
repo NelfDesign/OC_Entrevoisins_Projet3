@@ -28,6 +28,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         void onItemClick(int position);
     }
 
+    //Fields
     private final List<Neighbour> mNeighbours;
     private onItemListener mOnItemListener;
 
@@ -45,11 +46,13 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_neighbour, parent, false);
+        //return a new ViewHolder with the view and the listener
         return new ViewHolder(view, mOnItemListener);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        //position of the neighbour in the list
         Neighbour neighbour = mNeighbours.get(position);
         holder.mNeighbourName.setText(neighbour.getName());
         Glide.with(holder.mNeighbourAvatar.getContext())

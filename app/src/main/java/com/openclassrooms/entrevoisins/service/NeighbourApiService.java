@@ -9,7 +9,6 @@ import java.util.List;
  * Neighbour API client
  */
 public interface NeighbourApiService {
-
     /**
      * Get all my Neighbours
      * @return {@link List}
