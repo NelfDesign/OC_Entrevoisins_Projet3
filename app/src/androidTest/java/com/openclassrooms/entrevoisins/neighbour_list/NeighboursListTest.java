@@ -89,7 +89,7 @@ public class NeighboursListTest {
     public void myNeighboursList_clickOnView_shouldGoToDetailPage(){
         //Given : click on the item
         onView(withId(R.id.list_neighbours))
-                .perform(click());
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         //Then : go to page details
         onView(withId(R.id.activity_details))
                 .check(matches(isDisplayed()));
