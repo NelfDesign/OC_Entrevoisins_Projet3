@@ -67,7 +67,7 @@ public class FavoriteFragment extends Fragment implements MyNeighbourRecyclerVie
      */
     private void initListFavorite() {
         favoritesList = mApiService.getFavorites();
-        mRecyclerView.setAdapter(new FavoriteRecyclerViewAdapter(favoritesList, this));
+        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(favoritesList, this));
     }
 
     @Override
@@ -105,7 +105,6 @@ public class FavoriteFragment extends Fragment implements MyNeighbourRecyclerVie
      */
     @Override
     public void onItemClick(int position) {
-        Log.i("click", "Click ok");
         Gson gson = new Gson();
         String json = gson.toJson(favoritesList.get(position));
         Context context = getContext();
