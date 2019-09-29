@@ -1,4 +1,4 @@
-package com.openclassrooms.entrevoisins.ui.neighbour_list;
+package com.openclassrooms.entrevoisins.ui.neighbour_list.Adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

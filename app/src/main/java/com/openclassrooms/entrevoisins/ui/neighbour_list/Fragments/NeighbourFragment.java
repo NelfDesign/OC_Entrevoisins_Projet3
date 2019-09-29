@@ -1,4 +1,4 @@
-package com.openclassrooms.entrevoisins.ui.neighbour_list;
+package com.openclassrooms.entrevoisins.ui.neighbour_list.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,33 +15,31 @@ import android.view.ViewGroup;
 import com.google.gson.Gson;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
-import com.openclassrooms.entrevoisins.events.DeleteFavoriteEvent;
+import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
+import com.openclassrooms.entrevoisins.ui.neighbour_list.Activity.DetailsNeighbourActivity;
+import com.openclassrooms.entrevoisins.ui.neighbour_list.Adapter.MyNeighbourRecyclerViewAdapter;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
-/**
- * Created by Nelfdesign at 30/08/2019
- * com.openclassrooms.entrevoisins.ui.neighbour_list
- */
-public class FavoriteFragment extends Fragment implements MyNeighbourRecyclerViewAdapter.onItemListener{
+
+public class NeighbourFragment extends Fragment implements MyNeighbourRecyclerViewAdapter.onItemListener {
 
     private NeighbourApiService mApiService;
-    private List<Neighbour> favoritesList;
+    private List<Neighbour> mNeighbours;
     private RecyclerView mRecyclerView;
-
-    public FavoriteFragment() { }
 
     /**
      * Create and return a new instance
-     * @return @{@link FavoriteFragment}
+     * @return @{@link NeighbourFragment}
      */
-    public static FavoriteFragment newInstance() {
-        return new FavoriteFragment();
+    public static NeighbourFragment newInstance() {
+        NeighbourFragment fragment = new NeighbourFragment();
+        return fragment;
     }
 
     @Override
@@ -53,21 +51,21 @@ public class FavoriteFragment extends Fragment implements MyNeighbourRecyclerVie
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_favorite_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_neighbour_list, container, false);
         Context context = view.getContext();
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        initListFavorite();
+        initList();
         return view;
     }
 
     /**
-     * Init the List of favorite neighbours
+     * Init the List of neighbours
      */
-    private void initListFavorite() {
-        favoritesList = mApiService.getFavorites();
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(favoritesList, this));
+    private void initList() {
+        mNeighbours = mApiService.getNeighbours();
+        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours, this));
     }
 
     @Override
@@ -82,21 +80,14 @@ public class FavoriteFragment extends Fragment implements MyNeighbourRecyclerVie
         EventBus.getDefault().unregister(this);
     }
 
-    //method called by the back button
-    @Override
-    public void onResume() {
-        super.onResume();
-        initListFavorite();
-    }
-
     /**
      * Fired if the user clicks on a delete button
      * @param event
      */
     @Subscribe
-    public void onDeleteFavorite(DeleteFavoriteEvent event) {
-        mApiService.deleteFavorite(event.neighbour);
-        initListFavorite();
+    public void onDeleteNeighbour(DeleteNeighbourEvent event) {
+        mApiService.deleteNeighbour(event.neighbour);
+        initList();
     }
 
     /**
@@ -105,8 +96,10 @@ public class FavoriteFragment extends Fragment implements MyNeighbourRecyclerVie
      */
     @Override
     public void onItemClick(int position) {
+        Log.i("click", "Click ok");
         Gson gson = new Gson();
-        String json = gson.toJson(favoritesList.get(position));
+        String json = gson.toJson(mNeighbours.get(position));
+
         Context context = getContext();
         Intent intent = new Intent(context, DetailsNeighbourActivity.class);
         intent.putExtra("json", json);

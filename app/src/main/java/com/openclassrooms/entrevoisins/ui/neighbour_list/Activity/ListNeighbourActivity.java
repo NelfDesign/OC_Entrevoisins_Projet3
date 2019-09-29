@@ -1,4 +1,4 @@
-package com.openclassrooms.entrevoisins.ui.neighbour_list;
+package com.openclassrooms.entrevoisins.ui.neighbour_list.Activity;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.ui.neighbour_list.Adapter.ListNeighbourPagerAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
