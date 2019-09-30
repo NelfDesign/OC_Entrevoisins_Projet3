@@ -28,17 +28,18 @@
 
                 <!-- USER IMAGE -->
 
+                <!-- TOOLBAR -->
+
                 <ImageView
                     android:id="@+id/imageNeighbour"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:src="@drawable/ic_launcher_background"
+                    android:layout_height="220dp"
                     android:scaleType="centerCrop"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:src="@drawable/ic_launcher_background"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
-
-                <!-- TOOLBAR -->
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbarDetails"
@@ -53,11 +54,11 @@
                     android:id="@+id/nameDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:paddingBottom="20dp"
+                    android:layout_marginStart="@dimen/margin_large"
+                    android:layout_marginEnd="@dimen/margin_large"
+                    android:paddingBottom="@dimen/margin_large"
                     tools:text="Caroline"
-                    android:textSize="36sp"
+                    android:textSize="@dimen/text_title"
                     android:textColor="@android:color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -89,12 +90,11 @@
                     android:id="@+id/nameCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="12dp"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_vertical_margin"
+                    android:padding="@dimen/activity_horizontal_margin"
                     tools:text="Caroline"
-                    android:textSize="28sp"
+                    android:textSize="@dimen/text_size_title"
                     android:textColor="@color/mainTitle"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -129,7 +129,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/address"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size"
                     android:textAlignment="textStart"
                     app:layout_constraintBottom_toBottomOf="@id/iconAddress"
                     app:layout_constraintStart_toEndOf="@id/iconAddress"
@@ -151,7 +151,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/phone_number"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size"
                     android:textAlignment="textStart"
                     app:layout_constraintBottom_toBottomOf="@id/iconPhone"
                     app:layout_constraintStart_toEndOf="@id/iconPhone"
@@ -175,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/url"
                     android:textAlignment="textStart"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size"
                     app:layout_constraintBottom_toBottomOf="@id/iconUrl"
                     app:layout_constraintStart_toEndOf="@id/iconUrl"
                     app:layout_constraintTop_toTopOf="@+id/iconUrl" />
@@ -184,9 +184,9 @@
                     android:id="@+id/nameFacebook"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textSize="@dimen/text_size"
+                    app:layout_constraintBottom_toBottomOf="@+id/facebook"
+                    app:layout_constraintTop_toTopOf="@+id/facebook"
                     app:layout_constraintLeft_toRightOf="@+id/facebook"
                     tools:text="caroline" />
 
@@ -215,12 +215,12 @@
                     android:id="@+id/activity_profile_neighbour_tv_basic_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="8dp"
+                    android:layout_marginStart="@dimen/margin_large"
+                    android:layout_marginEnd="@dimen/margin_large"
+                    android:paddingTop="@dimen/padding_medium"
+                    android:paddingBottom="@dimen/appbar_padding_top"
                     android:text="@string/text"
-                    android:textSize="26sp"
+                    android:textSize="@dimen/text_size_title"
                     android:textColor="@color/mainTitle"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -243,16 +243,18 @@
                     android:id="@+id/activity_profile_neighbour_tv_introduction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="@dimen/margin_large"
+                    android:layout_marginEnd="@dimen/margin_large"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
                     android:text="@string/description"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/activity_profile_neighbour_v_separator2"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintVertical_bias="0.0" />
 
             </android.support.constraint.ConstraintLayout>
 
