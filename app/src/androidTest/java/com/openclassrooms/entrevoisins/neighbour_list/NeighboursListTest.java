@@ -11,7 +11,6 @@ import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.DummyNeighbourGenerator;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.Activity.ListNeighbourActivity;
 import com.openclassrooms.entrevoisins.utils.DeleteViewAction;
-import com.openclassrooms.entrevoisins.utils.SelectViewAction;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -89,7 +88,7 @@ public class NeighboursListTest {
     public void myNeighboursList_clickOnView_shouldGoToDetailPage(){
         //Given : click on the item
         onView(withId(R.id.list_neighbours))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+                .perform(RecyclerViewActions.actionOnItemAtPosition(POSITION_ITEM, click()));
         //Then : go to page details
         onView(withId(R.id.activity_details))
                 .check(matches(isDisplayed()));
@@ -104,7 +103,7 @@ public class NeighboursListTest {
         Neighbour neighbour = this.mNeighbourList.get(POSITION_ITEM);
         //When : click on a item of neighbour list at position 0
         onView(withId(R.id.list_neighbours))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(POSITION_ITEM, new SelectViewAction()));
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
         //Then : attent to have the name of the neighbour in the TextView
         onView(withId(R.id.nameDetails)).check(matches(withText(neighbour.getName())));
     }
@@ -119,7 +118,7 @@ public class NeighboursListTest {
         for (int i = 0; i < 2; i++){
             //click on the first neighbour to show detail
             onView(withId(R.id.list_neighbours))
-                    .perform(RecyclerViewActions.actionOnItemAtPosition(i,new SelectViewAction()));
+                    .perform(RecyclerViewActions.actionOnItemAtPosition(i,click()));
             //click on the fab button to add it to favorite
             onView(withId(R.id.fab)).perform(click());
             //return back
@@ -140,15 +139,13 @@ public class NeighboursListTest {
     public void Given_aFavorite_When_clickOnDelete_Then_deleteIt() {
         //When : Check if the View is Displayed
         onView(withId(R.id.list_neighbours)).check(matches(isDisplayed()));
-        for (int i = 0; i < 1; i++){
             //click on the first neighbour to show detail
-            onView(withId(R.id.list_neighbours))
-                    .perform(RecyclerViewActions.actionOnItemAtPosition(i,new SelectViewAction()));
+        onView(withId(R.id.list_neighbours))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
             //click on the fab button to add it to favorite
-            onView(withId(R.id.fab)).perform(click());
+        onView(withId(R.id.fab)).perform(click());
             //return back
-            pressBack();
-        }
+        pressBack();
 
         //scroll to the favorite page in the container
         onView(withId(R.id.container)).perform(scrollRight());
